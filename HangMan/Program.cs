@@ -47,9 +47,9 @@
 
         static void Main(string[] args)
         {
-            int entry;
+            int entry, letters, guesses = 7;
             bool eFalse = false;
-            string word;
+            string word = "", guess;
 
             Random generator = new Random();
             List <string> words = new List<string>();
@@ -117,16 +117,73 @@
                 }
                 else
                 {
-                    eFalse = false;
                     while (!eFalse)
                     {
                         Console.Clear ();
                         Console.WriteLine("Invalid entry, please try again:");
                         Console.WriteLine();
-                        entry = 
+                        entry = Convert.ToInt32(Console.ReadLine());
+                        if (entry == 1)
+                        {
+                            word = words[generator.Next(1, 4)];
+                            break;
+                        }
+                        else if (entry == 2)
+                        {
+                            word = words[generator.Next(4, 7)];
+                            break;
+                        }
+                        else if (entry == 3)
+                        {
+                            word = words[generator.Next(7, 10)];
+                            break;
+                        }
+                       
                     }
 
                 }
+
+                Console.Clear();
+                l1();
+                letters = word.Length;
+                char[] guessed = new char[letters];
+                for (int i = 0; i < letters; i++)
+                {
+                    guessed[i] = '_';
+                }
+
+                Console.WriteLine();
+                Console.WriteLine(string.Join(" ", guessed)); // Display initial guessed letters
+                Console.WriteLine("Enter your guess below. You have " + guesses + " left.");
+                Console.WriteLine();
+                guess = Console.ReadLine();
+
+                bool found = false;
+                for (int i = 0; i < letters; i++)
+                {
+                    if (word[i].ToString() == guess)
+                    {
+                        found = true;
+                        guessed[i] = guess[0]; // Update guessed letters array at index i with the correct guess
+                    }
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("");
+                Console.WriteLine(string.Join(" ", guessed)); // Display updated guessed letters
+
+                if (found)
+                {
+                    Console.WriteLine("Your guess is correct!");
+                }
+                else
+                {
+                    Console.WriteLine("Your guess is incorrect!");
+                }
+
+
+
+
             }
             else if (entry == 2)
             {
