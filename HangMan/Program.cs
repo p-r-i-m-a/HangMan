@@ -123,7 +123,7 @@
                         Console.Clear ();
                         Console.WriteLine("Invalid entry, please try again:");
                         Console.WriteLine();
-                        entry =
+                        entry = 
                     }
 
                 }
