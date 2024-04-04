@@ -3,53 +3,12 @@
     internal class Program
     {
 
-        public static void l1() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   \r\n|    \r\n|    \r\n|    \r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l2() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|    \r\n|    \r\n|    \r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l3() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|    |\r\n|    |    \r\n|    \r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l4() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|   \\|\r\n|    |\r\n|    \r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l5() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|   \\|/\r\n|    |\r\n|    \r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l6() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|   \\|/\r\n|    |\r\n|   / \r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l7() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|   \\|/\r\n|    |\r\n|   / \\\r\n|\r\n|_____\r\n\"\"\";");
-        }
-        public static void l8() 
-        {
-            Console.Clear();
-            Console.WriteLine("____\r\n|/   |\r\n|   (_)\r\n|   /|\\\r\n|    |\r\n|   | |\r\n|\r\n|_____\r\n\"\"\"]");
-        }
-
 
         static void Main(string[] args)
         {
             int entry, letters, guesses = 7;
-            bool eFalse = false;
-            string word = "", guess;
+            bool   playing = true, eFalse = false;
+            string word = "", guess = "";
 
             Random generator = new Random();
             List <string> words = new List<string>();
@@ -64,6 +23,18 @@
             words.Add("Supernova");
             words.Add("Interstellar");
             words.Add("Nucleosynthesis");
+
+            List <string> L = new List<string>();
+
+            L.Add("____\r\n|/   |\r\n|   \r\n|    \r\n|    \r\n|    \r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|    \r\n|    \r\n|    \r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|    |\r\n|    |    \r\n|    \r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|   \\|\r\n|    |\r\n|    \r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|   \\|/\r\n|    |\r\n|    \r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|   \\|/\r\n|    |\r\n|   / \r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|   \\|/\r\n|    |\r\n|   / \\\r\n|\r\n|_____\r\n\"\"\";");
+            L.Add(" ____\r\n|/   |\r\n|   (_)\r\n|   /|\\\r\n|    |\r\n|   | |\r\n|\r\n|_____\r\n\"\"\"]");
+
 
             Console.WriteLine("Welcome to the hangman game. You will have a total of seven guesses for each word. \n\rFor default words enter 1. For custom words enter 2.");
             entry = Convert.ToInt32(Console.ReadLine());
@@ -142,48 +113,97 @@
                     }
 
                 }
+                char[] guessed = new char[word.Length];
 
-                Console.Clear();
-                l1();
-                letters = word.Length;
-                char[] guessed = new char[letters];
-                for (int i = 0; i < letters; i++)
+                while (playing)
                 {
-                    guessed[i] = '_';
-                }
 
-                Console.WriteLine();
-                Console.WriteLine(string.Join(" ", guessed)); // Display initial guessed letters
-                Console.WriteLine("Enter your guess below. You have " + guesses + " left.");
-                Console.WriteLine();
-                guess = Console.ReadLine();
 
-                bool found = false;
-                for (int i = 0; i < letters; i++)
-                {
-                    if (word[i].ToString() == guess)
+                    Console.Clear();
+                    if (guesses == 7)
                     {
-                        found = true;
-                        guessed[i] = guess[0]; // Update guessed letters array at index i with the correct guess
+                        Console.WriteLine(L[1]);
+                    }
+                    else if (guesses == 6)
+                    {
+                        Console.WriteLine(L[2]);
+                    }
+                    else if (guesses == 5)
+                    {
+                        Console.WriteLine(L[3]);
+                    }
+                    else if (guesses == 4)
+                    {
+                        Console.WriteLine(L[4]);
+                    }
+                    else if (guesses == 3)
+                    {
+                        Console.WriteLine(L[5]);
+                    }
+                    else if (guesses == 2)
+                    {
+                        Console.WriteLine(L[6]);
+                    }
+                    else if (guesses == 1)
+                    {
+                        Console.WriteLine(L[7]);
+                    }
+                    else if (guesses == 0)
+                    {
+                        Console.WriteLine(L[8]);
+                        break;
+                    }
+
+                    letters = word.Length;
+                    for (int i = 0; i < letters; i++)
+                    {
+                        guessed[i] = '_';
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("Guessed letters: " + string.Join(" ", guessed));
+                    Console.WriteLine("Enter your guess below. You have " + guesses + " left.");
+                    Console.WriteLine();
+
+                    guess = Console.ReadLine();
+
+                    bool found = false;
+                    for (int i = 0; i < letters; i++)
+                    {
+                        if (char.ToLower(word[i]) == char.ToLower(char.Parse(guess)))
+                        {
+                            found = true;
+                            guessed[i] = word[i]; 
+                        }
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine("");
+
+                    if (found)
+                    {
+                        Console.WriteLine("Correct guess!");
+
+                        
+                        for (int i = 0; i < word.Length; i++)
+                        {
+                            if (char.ToLower(word[i]) == char.ToLower(char.Parse(guess)))
+                            {
+                                guessed[i] = word[i];
+                            }
+                        }
+
+
+                        
+                        if (string.Join("", guessed) == word)
+                        {
+                            Console.WriteLine("Congratulations! You've guessed the word: " + word);
+                            break; 
+                        }
                     }
                 }
-
                 Console.WriteLine();
-                Console.WriteLine("");
-                Console.WriteLine(string.Join(" ", guessed)); // Display updated guessed letters
-
-                if (found)
-                {
-                    Console.WriteLine("Your guess is correct!");
-                }
-                else
-                {
-                    Console.WriteLine("Your guess is incorrect!");
-                }
-
-
-
-
+                Console.WriteLine("You Lost!");
             }
             else if (entry == 2)
             {
